@@ -10,18 +10,19 @@ import org.junit.Test;
 
 public class ComposableFunctionTest {
 
-  private String addTestFunctionToString(int x) {
+  private String addAndToStringTestFunction(int x) {
     return String.valueOf(x + 10);
   }
 
-  private List<String> stringToList(String str) {
+  private List<String> splitAndToListTestFunction(String str) {
     return Arrays.asList(str.split(""));
   }
 
   @Test
   public void testComposeFunctions() {
-    Function<Integer, List<String>> composedFunc = ComposableFunction
-        .from(this::addTestFunctionToString, ComposableFunction.from(this::stringToList));
+    Function<Integer, List<String>> composedFunc =
+        ComposableFunction.from(this::addAndToStringTestFunction,
+            ComposableFunction.from(this::splitAndToListTestFunction));
 
     List<String> actual = composedFunc.apply(10);
     List<String> expected = Arrays.asList("2", "0");
