@@ -21,8 +21,8 @@ public class ComposableFunctionTest {
   @Test
   public void testComposeFunctions() {
     Function<Integer, List<String>> composedFunc =
-        ComposableFunction.from(this::addAndToStringTestFunction,
-            ComposableFunction.from(this::splitAndToListTestFunction));
+        ComposableFunction2.from(this::addAndToStringTestFunction,
+            ComposableFunction2.from(this::splitAndToListTestFunction));
 
     List<String> actual = composedFunc.apply(10);
     List<String> expected = Arrays.asList("2", "0");
