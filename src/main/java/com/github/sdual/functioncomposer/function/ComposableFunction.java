@@ -1,8 +1,5 @@
 package com.github.sdual.functioncomposer.function;
 
-import java.util.ConcurrentModificationException;
-import sun.java2d.cmm.CMMServiceProvider;
-
 public interface ComposableFunction {
 
   static ComposableFunction from(ComposableFunction func, ComposableFunction nextFunc) {
@@ -29,7 +26,8 @@ public interface ComposableFunction {
   }
 
   @FunctionalInterface
-  interface Function2<T extends ComposableFunction, U extends ComposableFunction, R> {
+  interface Function2<T extends ComposableFunction, U extends ComposableFunction, R> extends
+      ComposableFunction {
 
     R apply(U u, T t);
 
@@ -40,7 +38,8 @@ public interface ComposableFunction {
   }
 
   @FunctionalInterface
-  interface Function3<T extends ComposableFunction, U extends ComposableFunction, V extends ComposableFunction, R> extends
+  interface Function3<T extends ComposableFunction, U extends ComposableFunction,
+      V extends ComposableFunction, R> extends
       ComposableFunction {
 
     R apply(T t, U u, V v);
